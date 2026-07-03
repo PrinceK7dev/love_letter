@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter To Mikala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night-deep:#211730;
+    --night-mid:#3a2a53;
+    --night-glow:#5a3f78;
+    --gold:#f4c869;
+    --gold-soft:#ffe3a3;
+    --blush:#f7b8c9;
+    --rose:#d1456b;
+    --paper:#f8efdc;
+    --paper-dark:#ead6ab;
+    --ink:#4a3524;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;height:100%;overflow-x:hidden;font-family:'Cormorant Garamond',serif;}
+
+  /* ---------- PAGE 1 : HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(255,227,163,0.15), transparent 40%),
+      radial-gradient(ellipse at 80% 10%, rgba(255,227,163,0.1), transparent 35%),
+      linear-gradient(180deg, var(--night-deep) 0%, var(--night-mid) 55%, var(--night-glow) 100%);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    padding-bottom:60px;
+  }
+
+  .moon{
+    position:absolute;
+    top:40px; right:8%;
+    width:70px; height:70px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #fffdf2, var(--gold-soft) 70%);
+    box-shadow:0 0 40px 10px rgba(255,227,163,0.4);
+    z-index:1;
+  }
+
+  .stars{position:absolute; inset:0; z-index:0;}
+  .star{
+    position:absolute;
+    width:2px; height:2px;
+    background:#fff;
+    border-radius:50%;
+    animation:twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.2;}
+    50%{opacity:1;}
+  }
+
+  /* wooden rail */
+  .rail{
+    position:relative;
+    z-index:3;
+    margin-top:38px;
+    width:min(92%, 760px);
+    height:16px;
+    border-radius:4px;
+    background:linear-gradient(180deg,#8a5a34,#5e3c22);
+    box-shadow:0 4px 10px rgba(0,0,0,0.4);
+  }
+
+  /* frames strip */
+  .frames{
+    position:relative;
+    z-index:3;
+    display:flex;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 46px);
+    width:min(94%, 800px);
+    padding-top:0;
+  }
+  .frame-unit{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transform-origin:top center;
+    animation:sway 5s ease-in-out infinite;
+  }
+  .frame-unit:nth-child(1){animation-duration:4.6s; animation-delay:0s;}
+  .frame-unit:nth-child(2){animation-duration:5.4s; animation-delay:.3s;}
+  .frame-unit:nth-child(3){animation-duration:4.9s; animation-delay:.7s;}
+  .frame-unit:nth-child(4){animation-duration:5.8s; animation-delay:.15s;}
+  @keyframes sway{
+    0%,100%{transform:rotate(-3.5deg);}
+    50%{transform:rotate(3.5deg);}
+  }
+
+  .string{
+    width:2px;
+    background:linear-gradient(180deg, var(--gold), rgba(244,200,105,0.3));
+    height:clamp(30px, 6vw, 60px);
+  }
+
+  .photo-frame{
+    background:#fffaf0;
+    padding:10px 10px 26px 10px;
+    border-radius:3px;
+    box-shadow:0 12px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,0,0,0.05);
+    width:clamp(96px, 18vw, 160px);
+  }
+  .photo-frame img{
+    display:block;
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    background:linear-gradient(135deg, var(--blush), var(--rose));
+  }
+  .photo-frame .fallback{
+    width:100%;
+    aspect-ratio:1/1;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    color:#fff;
+    background:linear-gradient(135deg, var(--blush), var(--rose));
+  }
+  .photo-frame img.broken{display:none;}
+  .photo-frame img.broken + .fallback{display:flex;}
+
+  .hero-title{
+    position:relative;
+    z-index:3;
+    margin-top:44px;
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(2.6rem, 7vw, 4.2rem);
+    color:var(--gold-soft);
+    text-shadow:0 0 24px rgba(244,200,105,0.5);
+    text-align:center;
+  }
+  .hero-sub{
+    position:relative;
+    z-index:3;
+    font-style:italic;
+    color:var(--blush);
+    letter-spacing:0.04em;
+    margin-top:-6px;
+    font-size:1.1rem;
+  }
+
+  .open-btn{
+    position:relative;
+    z-index:3;
+    margin-top:38px;
+    padding:16px 42px;
+    border:1px solid var(--gold);
+    border-radius:40px;
+    background:rgba(244,200,105,0.08);
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.15rem;
+    letter-spacing:0.08em;
+    cursor:pointer;
+    transition:all .35s ease;
+  }
+  .open-btn:hover{
+    background:var(--gold);
+    color:var(--night-deep);
+    box-shadow:0 0 30px rgba(244,200,105,0.6);
+    transform:translateY(-2px);
+  }
+
+  /* petals */
+  .petal{
+    position:absolute;
+    top:-20px;
+    width:14px; height:14px;
+    background:radial-gradient(circle at 30% 30%, #ffe6ee, var(--blush));
+    border-radius:150% 0 150% 0;
+    opacity:.85;
+    pointer-events:none;
+    z-index:2;
+    animation-name:fall, sideways;
+    animation-timing-function:linear, ease-in-out;
+    animation-iteration-count:infinite, infinite;
+  }
+  @keyframes fall{
+    to{ transform:translateY(110vh) rotate(360deg); }
+  }
+  @keyframes sideways{
+    0%,100%{margin-left:0;}
+    50%{margin-left:40px;}
+  }
+
+  /* fireflies */
+  .firefly{
+    position:absolute;
+    width:5px; height:5px;
+    border-radius:50%;
+    background:var(--gold-soft);
+    box-shadow:0 0 8px 3px rgba(255,227,163,0.8);
+    z-index:2;
+    animation:flicker 4s ease-in-out infinite, drift 8s ease-in-out infinite;
+  }
+  @keyframes flicker{
+    0%,100%{opacity:.15;}
+    50%{opacity:1;}
+  }
+  @keyframes drift{
+    0%,100%{transform:translate(0,0);}
+    25%{transform:translate(20px,-15px);}
+    50%{transform:translate(-10px,10px);}
+    75%{transform:translate(15px,20px);}
+  }
+
+  /* ---------- PAGE 2 : LETTER ---------- */
+  .letter-page{
+    display:none;
+    position:relative;
+    min-height:100vh;
+    background:linear-gradient(180deg, var(--night-deep), var(--night-mid));
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:40px 16px;
+    overflow:hidden;
+  }
+  .letter-page.active{display:flex;}
+
+  .hint{
+    color:var(--blush);
+    font-style:italic;
+    margin-bottom:28px;
+    opacity:.85;
+    font-size:1.05rem;
+    transition:opacity .4s ease;
+  }
+
+  /* envelope */
+  .envelope-wrap{
+    position:relative;
+    width:min(90vw, 340px);
+    height:min(60vw, 220px);
+    cursor:pointer;
+    perspective:1000px;
+  }
+  .envelope-body{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, var(--paper-dark), var(--paper));
+    border-radius:6px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    overflow:hidden;
+  }
+  .envelope-flap{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:0; width:0;
+    border-left:170px solid transparent;
+    border-right:170px solid transparent;
+    border-top:110px solid #dcc28f;
+    transform-origin:top center;
+    transition:transform 1s cubic-bezier(.6,-0.1,.4,1.2);
+    z-index:3;
+  }
+  .envelope-wrap.opened .envelope-flap{
+    transform:rotateX(180deg);
+  }
+  .seal{
+    position:absolute;
+    top:70px; left:50%;
+    transform:translateX(-50%);
+    width:46px; height:46px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #e8607e, var(--rose));
+    box-shadow:0 4px 10px rgba(0,0,0,0.4);
+    display:flex;align-items:center;justify-content:center;
+    color:#ffd9e2; font-size:1.2rem;
+    z-index:4;
+    transition:opacity .3s ease;
+  }
+  .envelope-wrap.opened .seal{opacity:0;}
+
+  .letter-peek{
+    position:absolute;
+    left:8%; right:8%;
+    bottom:8px;
+    height:70%;
+    background:var(--paper);
+    border-radius:4px;
+    box-shadow:0 -4px 10px rgba(0,0,0,0.15);
+    z-index:2;
+    transition:transform 1s ease 0.4s, opacity .5s ease 1.2s;
+  }
+  .envelope-wrap.opened .letter-peek{
+    transform:translateY(-140%) scale(1.05);
+    opacity:0;
+  }
+
+  .envelope-hint-text{
+    margin-top:22px;
+    color:var(--gold-soft);
+    font-size:0.95rem;
+    letter-spacing:0.06em;
+  }
+
+  /* letter reading view */
+  .letter-view{
+    display:none;
+    max-width:640px;
+    width:100%;
+    background:var(--paper);
+    border-radius:6px;
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+    padding:clamp(28px, 6vw, 60px);
+    position:relative;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .letter-view.show{
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+  }
+  .letter-view::before{
+    content:'';
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(74,53,36,0.15);
+    pointer-events:none;
+  }
+  .letter-heading{
+    font-family:'Great Vibes', cursive;
+    font-size:clamp(2rem, 5vw, 2.8rem);
+    color:var(--rose);
+    margin:0 0 18px 0;
+  }
+  .letter-text{
+    font-family:'Caveat', cursive;
+    font-size:clamp(1.35rem, 3.2vw, 1.7rem);
+    line-height:1.55;
+    color:var(--ink);
+    white-space:pre-wrap;
+    min-height:220px;
+  }
+  .cursor-blink{
+    display:inline-block;
+    width:2px;
+    background:var(--ink);
+    animation:blink 0.8s step-end infinite;
+  }
+  @keyframes blink{
+    50%{opacity:0;}
+  }
+
+  .back-btn{
+    display:none;
+    margin-top:30px;
+    padding:12px 30px;
+    border:1px solid var(--gold);
+    border-radius:30px;
+    background:transparent;
+    color:var(--gold-soft);
+    font-family:'Cormorant Garamond',serif;
+    font-size:1rem;
+    cursor:pointer;
+    transition:all .3s ease;
+  }
+  .back-btn.show{display:inline-block;}
+  .back-btn:hover{background:var(--gold); color:var(--night-deep);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<section class="hero" id="hero">
+  <div class="stars" id="stars"></div>
+  <div class="moon"></div>
+
+  <div class="rail"></div>
+  <div class="frames">
+    <div class="frame-unit">
+      <div class="string"></div>
+      <div class="photo-frame">
+        <img src="image1.jpg" alt="Memory 1" onerror="this.classList.add('broken')">
+        <div class="fallback">💗</div>
+      </div>
+    </div>
+    <div class="frame-unit">
+      <div class="string"></div>
+      <div class="photo-frame">
+        <img src="image2.jpg" alt="Memory 2" onerror="this.classList.add('broken')">
+        <div class="fallback">💗</div>
+      </div>
+    </div>
+    <div class="frame-unit">
+      <div class="string"></div>
+      <div class="photo-frame">
+        <img src="image3.jpg" alt="Memory 3" onerror="this.classList.add('broken')">
+        <div class="fallback">💗</div>
+      </div>
+    </div>
+    <div class="frame-unit">
+      <div class="string"></div>
+      <div class="photo-frame">
+        <img src="image4.jpeg" alt="Memory 4" onerror="this.classList.add('broken')">
+        <div class="fallback">💗</div>
+      </div>
+    </div>
+  </div>
+
+  <h1 class="hero-title">To Mikala, My Love</h1>
+  <p class="hero-sub">Every picture holds a little piece of our journey together</p>
+  <button class="open-btn" id="openBtn">Open Your Letter 💌</button>
+</section>
+
+<!-- ================= PAGE 2 ================= -->
+<section class="letter-page" id="letterPage">
+  <div id="envelopeStage">
+    <p class="hint">tap the envelope to open it</p>
+    <div class="envelope-wrap" id="envelope">
+      <div class="letter-peek"></div>
+      <div class="envelope-body"></div>
+      <div class="envelope-flap"></div>
+      <div class="seal">♡</div>
+    </div>
+    <p class="envelope-hint-text">It's been waiting for you</p>
+  </div>
+
+  <div class="letter-view" id="letterView">
+    <p class="letter-heading">My Love,</p>
+    <p class="letter-text" id="letterText"></p>
+    <button class="back-btn" id="backBtn">← back to the garden</button>
+  </div>
+</section>
+
+<script>
+  /* ---------- generate stars ---------- */
+  const starsWrap = document.getElementById('stars');
+  for(let i=0;i<70;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*60 + '%';
+    s.style.animationDelay = (Math.random()*3) + 's';
+    starsWrap.appendChild(s);
+  }
+
+  /* ---------- falling petals ---------- */
+  const hero = document.getElementById('hero');
+  const petalCount = 26;
+  for(let i=0;i<petalCount;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + '%';
+    const fallDur = 7 + Math.random()*8;
+    const swayDur = 2 + Math.random()*3;
+    p.style.animationDuration = fallDur + 's, ' + swayDur + 's';
+    p.style.animationDelay = (Math.random()*10) + 's, 0s';
+    p.style.width = p.style.height = (8 + Math.random()*8) + 'px';
+    hero.appendChild(p);
+  }
+
+  /* ---------- fireflies ---------- */
+  const fireflyCount = 18;
+  for(let i=0;i<fireflyCount;i++){
+    const f = document.createElement('div');
+    f.className = 'firefly';
+    f.style.left = Math.random()*100 + '%';
+    f.style.top = 20 + Math.random()*70 + '%';
+    f.style.animationDelay = (Math.random()*4) + 's, ' + (Math.random()*8) + 's';
+    hero.appendChild(f);
+  }
+
+  /* ---------- page transition ---------- */
+  const openBtn = document.getElementById('openBtn');
+  const heroSection = document.getElementById('hero');
+  const letterPage = document.getElementById('letterPage');
+
+  openBtn.addEventListener('click', () => {
+    heroSection.style.transition = 'opacity .6s ease';
+    heroSection.style.opacity = '0';
+    setTimeout(() => {
+      heroSection.style.display = 'none';
+      letterPage.classList.add('active');
+    }, 600);
+  });
+
+  /* ---------- envelope opening ---------- */
+  const envelope = document.getElementById('envelope');
+  const envelopeStage = document.getElementById('envelopeStage');
+  const letterView = document.getElementById('letterView');
+  const letterTextEl = document.getElementById('letterText');
+  const backBtn = document.getElementById('backBtn');
+
+  const LOVE_LETTER = `I know we’ve only been together for a couple of months, but you’ve already become such a special part of my life. Every moment we spend together makes me happier, and I always look forward to seeing you, talking to you, and making new memories with you.
+
+Thank you for being your amazing, caring, and beautiful self. You make my days brighter in ways you probably don’t even realize.
+
+I’m excited to see where this journey takes us, and I hope we continue to grow, laugh, and create unforgettable memories together.
+
+I’m really lucky to have you.
+
+With love,
+
+Prince ❤️`;
+
+  let hasOpened = false;
+  envelope.addEventListener('click', () => {
+    if(hasOpened) return;
+    hasOpened = true;
+    envelope.classList.add('opened');
+
+    setTimeout(() => {
+      envelopeStage.style.transition = 'opacity .5s ease';
+      envelopeStage.style.opacity = '0';
+      setTimeout(() => {
+        envelopeStage.style.display = 'none';
+        letterView.classList.add('show');
+        startTypewriter(LOVE_LETTER);
+      }, 500);
+    }, 1500);
+  });
+
+  function startTypewriter(text){
+    let i = 0;
+    letterTextEl.innerHTML = '<span class="cursor-blink">&nbsp;</span>';
+    function type(){
+      if(i < text.length){
+        letterTextEl.textContent = text.slice(0, i+1);
+        i++;
+        setTimeout(type, 28);
+      } else {
+        backBtn.classList.add('show');
+      }
+    }
+    type();
+  }
+
+  backBtn.addEventListener('click', () => {
+    letterPage.classList.remove('active');
+    heroSection.style.display = 'flex';
+    requestAnimationFrame(() => { heroSection.style.opacity = '1'; });
+  });
+</script>
+</body>
+</html>
